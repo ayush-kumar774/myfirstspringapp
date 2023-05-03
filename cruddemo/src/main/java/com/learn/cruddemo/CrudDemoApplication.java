@@ -20,11 +20,13 @@ public class CrudDemoApplication {
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
 		return runner -> {
 			//createStudent(studentDAO);
-			//createMultipleStudents(studentDAO);
+			createMultipleStudents(studentDAO);
 			//readStudent(studentDAO);
 			//queryForStudents(studentDAO);
 			//queryForStudentsByLastName(studentDAO);
-			updateStudent(studentDAO);
+			//updateStudent(studentDAO);
+			//deleteStudent(studentDAO);
+			//deleteAllStudents(studentDAO);
 		};
 	}
 
@@ -44,9 +46,9 @@ public class CrudDemoApplication {
 	private void createMultipleStudents (StudentDAO studentDAO) {
 		// create the student object
 		System.out.println("Creating new student object ...");
-		Student tempStudent1 = new Student("Steve", "Rogers", "captain.america@avengers.com");
-		Student tempStudent2 = new Student("Tony", "Stark", "ironman@avengers.com");
-		Student tempStudent3 = new Student("Natasha", "Roman-off", "black.widow@avengers.com");
+		Student tempStudent1 = new Student("Mad", "Titan", "thanos@avengers.com");
+		Student tempStudent2 = new Student("Bucky", "Barnes", "winter.soldier@avengers.com");
+		Student tempStudent3 = new Student("T'", "Challa", "black.panther@avengers.com");
 
 		// save the student object
 		System.out.println("Saving the students ...");
@@ -114,11 +116,26 @@ public class CrudDemoApplication {
 		System.out.println("Updating student ...");
 
 		// update the first name to "Scooby"
-		myStudent.setFirstName("Scooby");
+		myStudent.setFirstName("Daffy");
 		studentDAO.update(myStudent);
 
 		// display updated student
 		System.out.println("Updated student: " + myStudent);
+	}
+
+	private void deleteStudent(StudentDAO studentDAO) {
+		// retrieve the student on the basis of id : primary keu
+		int studentId = 4;
+		System.out.println("Deleting student with Id : " + studentId);
+
+		// delete the student
+		studentDAO.delete(studentId);
+		System.out.println("Deleted successfully!");
+	}
+
+	private void deleteAllStudents(StudentDAO studentDAO) {
+		System.out.println("Deleting all students!!");
+		studentDAO.deleteAll();
 	}
 
 }
