@@ -55,16 +55,4 @@ public class StudentRestController {
         return new ResponseEntity<StudentErrorResponse>(errorResponse, HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler
-    public ResponseEntity<StudentErrorResponse> handleException (Exception exception) {
-        // create a StudentErrorResponse
-        StudentErrorResponse errorResponse = new StudentErrorResponse();
-
-        errorResponse.setStatus(HttpStatus.BAD_REQUEST.value());
-        errorResponse.setMessage(exception.getMessage());
-        errorResponse.setTimeStamp(System.currentTimeMillis());
-
-        // return ResponseEntity
-        return new ResponseEntity<StudentErrorResponse>(errorResponse, HttpStatus.BAD_REQUEST);
-    }
 }
